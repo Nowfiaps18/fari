@@ -1,0 +1,159 @@
+mca@MCA51:~/Desktop$ sudo mysql
+[sudo] password for mca: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create data base student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'data base student' at line 1
+mysql> create database student;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases
+    -> 
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 3
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DB1                |
+| abu                |
+| abuu               |
+| abz                |
+| abz1               |
+| abzz               |
+| abzzz              |
+| alfred             |
+| colege             |
+| collegedb          |
+| dbms               |
+| empdata            |
+| employee           |
+| employeedb         |
+| fein               |
+| information_schema |
+| mysql              |
+| passenger          |
+| performance_schema |
+| rea                |
+| reea               |
+| riya               |
+| st                 |
+| student            |
+| subinsa            |
+| sys                |
+| thahir             |
+| train              |
++--------------------+
+28 rows in set (0.05 sec)
+
+mysql> use database college;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use database colege;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use database employee;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use databases employee;
+ERROR 1049 (42000): Unknown database 'databases'
+mysql> use colege;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table student;(rollno int,name varchar(20),course varchar(20),year int);
+ERROR 4028 (HY000): A table must have at least one visible column.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rollno int,name varchar(20),course varchar(20),year int)' at line 1
+mysql> create table student (rollno int,name varchar(20),course varchar(20),year int);
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> create table students(rollno int,name varchar(20),course varchar(20),year int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| course | varchar(20) | YES  |     | NULL    |       |
+| year   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students values;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into students values('1','rahmath','mca','2024');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students values('2','rameesa','mca','2024');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students values ('3','nija','mca','2024');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students values('4','fathima','mca','2024');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++--------+---------+--------+------+
+| rollno | name    | course | year |
++--------+---------+--------+------+
+|      1 | rahmath | mca    | 2024 |
+|      2 | rameesa | mca    | 2024 |
+|      3 | nija    | mca    | 2024 |
+|      4 | fathima | mca    | 2024 |
++--------+---------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> alter table students add(address varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe students;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| rollno  | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| course  | varchar(20) | YES  |     | NULL    |       |
+| year    | int         | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table students drop address;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| course | varchar(20) | YES  |     | NULL    |       |
+| year   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table students;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe table students;
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | students | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    1 |   100.00 | NULL  |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql> 
+
